@@ -17,22 +17,18 @@ const userSchema = new Schema({
   role: {
     type: String,
     default: 'user'
-  },
-  created_at: {
-    type: Date,
-    required: true,
-    default: Date.now
   }
 });
 
-userSchema.post('save', function(user) {
-  bcrypt.hash(user.password, 10, function(err, hash) {
-    if (err) {
-      throw new Error('Error saving Password');
-    }
-    user.password = hash;
-    user.save();
-  });
+userSchema.pre('save', async function(next) {
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPW = await bcrypt.hash(this.password, salt);
+    this.password = hashedPW;
+    next();
+  } catch (error) {
+    next(error);
+  }
 });
 
 userSchema.methods.checkPassword = async function(plainPassword) {

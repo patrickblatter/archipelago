@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 module.exports = {
 
-  validateSignup: (schema) => {
+  validateBody: (schema) => {
     return (req, res, next) => {
       const result = Joi.validate(req.body, schema);
       if(result.error) {
@@ -13,7 +13,7 @@ module.exports = {
   },
 
   schemas: {
-    signupSchema: Joi.object().keys({
+    authSchema: Joi.object().keys({
       email: Joi.string().email().required(),
       password: Joi.string().min(6).required(),
     })

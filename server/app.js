@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
 const { MONGO_URI } = require('./config/keys');
-const usersRoute = require('./routes/users');
 const app = express();
 
 // Connect to mongo
@@ -15,9 +15,10 @@ mongoose.connection
 // Setup Middleware
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(passport.initialize());
 
 // Routes
-app.use('/users', usersRoute);
+app.use('/users', require('./routes/users'));
 
 
 module.exports = app;

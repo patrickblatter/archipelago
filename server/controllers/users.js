@@ -9,7 +9,7 @@ const signToken = (payload) => {
     JWT_SECRET, 
     {
       expiresIn: '2d',
-      issuer: payload.email
+      issuer: 'Archipelago'
     }
   )
 }
@@ -31,13 +31,20 @@ module.exports = {
 
 
     // Create JWT token
-    const payload = ({email : newUser.email, role: newUser.role });
+    const payload = ({id : newUser._id, role: newUser.role });
     const token = signToken(payload);
     res.status(200).json({ token });
   },
 
   login: async (req, res, next) => {
+    const { _id, role } = req.user;
+    const payload = ({ _id, role });
+    const token = signToken(payload);
+    res.status(200).json({ token });
+  },
 
+  protected: (req, res, next) => {
+    res.status(200).json({ message: 'You can now acces the protected area'})
   }
 
 
