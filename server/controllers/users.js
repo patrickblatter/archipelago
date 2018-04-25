@@ -34,7 +34,10 @@ module.exports = {
     const payload = ({email : newUser.email, role: newUser.role });
     const token = signToken(payload);
     res.status(200).json({ token });
-    
+  },
+
+  login: async (req, res, next) => {
+
   }
 
 
