@@ -27,7 +27,10 @@ module.exports = {
     }
     
     const newUser = new User({ email, password });
-    await newUser.save();
+    const result = await newUser.save();
+    if(result.err) {
+      res.sendStatus(400);
+    }
 
 
     // Create JWT token
@@ -46,10 +49,6 @@ module.exports = {
   protected: (req, res, next) => {
     res.status(200).json({ message: 'You can now acces the protected area'})
   }
-
-
-
-
 
 
 }

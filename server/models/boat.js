@@ -14,11 +14,11 @@ const boatSchema = new Schema({
     type: Number,
     required: true
   },
-  owner: {
+  user: {
     type: Schema.Types.ObjectId,
     required: true
   },
-  image: {
+  images: {
     type: [String]
   }
 });

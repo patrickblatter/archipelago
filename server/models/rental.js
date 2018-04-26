@@ -38,9 +38,11 @@ rentalSchema.pre('save', function(next) {
 
   if (difference <= 0){
     // NOT POSSIBLE
+    next();
   } else {
     // calculate total price
     this.totalPrice = this.pricePerDay * difference;
+    next();
   }
 });
 
