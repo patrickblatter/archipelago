@@ -10,7 +10,7 @@ module.exports = {
       description,
       pricePerDay,
       user
-    }
+    } = req.body;
 
     const newBoat = new Boat({
       title,
