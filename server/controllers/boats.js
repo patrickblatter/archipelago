@@ -2,7 +2,16 @@ const Boat = require('../models/boat');
 
 module.exports = {
 
-
+  getAll: async (req, res, next) => {
+    const boats = await Boat.find({});
+    
+    if (boats.length > 0) {
+      res.status(200).json({ boats });
+    } else {
+      res.status(200).json({ boats: 'No Boats found'});
+    }
+  
+  },
 
   addBoat: async (req, res, next) => {
     const { 
@@ -16,13 +25,13 @@ module.exports = {
       title,
       description,
       pricePerDay,
-      user,
-      images
+      user
     });
 
     const result = await newBoat.save();
     if(result.err) {
       //failed
+      console.log(result);
       res.sendStatus(400);
     }
     
