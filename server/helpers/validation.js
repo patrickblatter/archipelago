@@ -23,7 +23,7 @@ module.exports = {
       description: Joi.string().required,
       pricePerDay: Joi.number().greater(0).required(),
       rentalStartDay: Joi.date().required(),
-      rentalEndDay: Joi.date().min(Joi.ref('rentalStartDay').required()
+      rentalEndDay: Joi.date().min(Joi.ref('rentalStartDay')).required()
     })
   }
 }
