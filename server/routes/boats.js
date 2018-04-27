@@ -3,12 +3,9 @@ const Boat = require('../models/boat');
 const boatController = require('../controllers/boats')
 const passport = require('passport');
 const passportConfig = require('../passport');
-const { validateBody, schemas } = require('../helpers/validation');
+const { validateBody, validateParams, schemas } = require('../helpers/validation');
 
-const authenticate = (schema) => passport.authenticate(`${schema}`, { session: false })
-
-
-
+const authenticate = (schema) => passport.authenticate(`${schema}`, { session: false });
 
 router.route('/')
   // Get all boats
@@ -22,10 +19,20 @@ router.route('/')
     boatController.addBoat
 );
 
-
-
 // Update Boat
 
-// Delete Boat
+// Routes for Boat with id
+router.route('/:_id')
+  // Get boat
+  .get(
+    boatController.getBoat
+  )
+
+  // Delete Boat
+  .delete(
+    authenticate('jwt'),
+    // validateParams(schemas.deleteBoatSchema),
+    boatController.deleteBoat 
+  )
 
 module.exports = router;

@@ -22,12 +22,12 @@ passport.use(new LocalStrategy({
     const correctPassword = await user.checkPassword(password);
 
     if (correctPassword) {
-      return done(null, user);
+      return done(null, user._id);
     } else {
       return done(null, false);
     }
-  } catch (err) {
-    return done(err);
+  } catch (error) {
+    return done(error);
   }
 }));
 
@@ -39,12 +39,12 @@ passport.use(new JwtStrategy({
   try {
     const user = await User.findById(jwtPayload._id);
     if (!user) {
-      return done(err, false);
+      return done(null, false);
     }
 
-    return done(null, user);
+    return done(null, user._id);
   } catch (error) {
-    return done(error, false)
+    return done(error)
   }
 }));
 

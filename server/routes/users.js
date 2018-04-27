@@ -19,8 +19,8 @@ router.route('/login')
 
 router.route('/protected')
   .get(
-passport.authenticate('jwt', { session: false }),
-userController.protected
+    passport.authenticate('jwt', { session: false }),
+    userController.protected
 );
 
 

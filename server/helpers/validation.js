@@ -12,6 +12,16 @@ module.exports = {
     }
   },
 
+  validateParams: (schema) => {
+    return (req, res, next) => {
+      const result = Joi.validate(req.params, schema);
+      if (result.error) {
+        return res.sendStatus(400);
+      }
+      next();
+    }
+  },
+
   schemas: {
     authSchema: Joi.object().keys({
       email: Joi.string().email().required(),
@@ -22,9 +32,15 @@ module.exports = {
       title: Joi.string().required(),
       description: Joi.string().required(),
       pricePerDay: Joi.number().greater(0).required(),
-      user: Joi.string().required()
+      // userId: Joi.string().required()
       // rentalStartDay: Joi.date().required(),
       // rentalEndDay: Joi.date().min(Joi.ref('rentalStartDay')).required()
-    })
-  }
+    }),
+
+    deleteBoatSchema: {
+      _id: Joi.array().items(Joi.string()).single().required()
+    }
+  },
+
+  
 }
