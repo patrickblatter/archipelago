@@ -21,8 +21,12 @@ passport.use(new LocalStrategy({
     // check if password matches
     const correctPassword = await user.checkPassword(password);
 
+    userfromEmail = {
+      _id: user._id,
+      role: user.role
+    }
     if (correctPassword) {
-      return done(null, user);
+      return done(null, userfromEmail);
     } else {
       return done(null, false);
     }
@@ -42,7 +46,12 @@ passport.use(new JwtStrategy({
       return done(null, false);
     }
 
-    return done(null, user);
+    userfromToken = {
+      _id: user._id,
+      role: user.role
+    }
+
+    return done(null, userfromToken);
   } catch (error) {
     return done(error)
   }

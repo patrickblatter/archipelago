@@ -32,7 +32,6 @@ module.exports = {
     const result = await newBoat.save();
     if(result.err) {
       //failed
-      console.log(result);
       return res.sendStatus(400);
     }
     

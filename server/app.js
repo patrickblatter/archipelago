@@ -20,6 +20,7 @@ app.use(passport.initialize());
 // Routes
 app.use('/users', require('./routes/users'));
 app.use('/boats', require('./routes/boats'));
+app.use('/rentals', require('./routes/rentals'));
 
 
 module.exports = app;
