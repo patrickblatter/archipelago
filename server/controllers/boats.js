@@ -82,6 +82,7 @@ module.exports = {
     }
 
     // Check if user making the request is the boat Owner
+    // test
     if(!req.user._id.equals(boat.userId)) {
       return res.sendStatus(403);
     }
