@@ -30,9 +30,15 @@ router.route('/:_id')
 
   // Delete Boat
   .delete(
-    authenticate('jwt'),
+    passport.authenticate('jwt', { session: false }),
     // validateParams(schemas.deleteBoatSchema),
     boatController.deleteBoat 
+  )
+
+  // update boat
+  .patch(
+    authenticate('jwt'),
+    boatController.updateBoat
   )
 
 module.exports = router;

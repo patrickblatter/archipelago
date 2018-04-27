@@ -22,7 +22,7 @@ passport.use(new LocalStrategy({
     const correctPassword = await user.checkPassword(password);
 
     if (correctPassword) {
-      return done(null, user._id);
+      return done(null, user);
     } else {
       return done(null, false);
     }
@@ -42,7 +42,7 @@ passport.use(new JwtStrategy({
       return done(null, false);
     }
 
-    return done(null, user._id);
+    return done(null, user);
   } catch (error) {
     return done(error)
   }
