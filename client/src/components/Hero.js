@@ -14,7 +14,8 @@ class Hero extends Component {
 }
 export default Hero;
 
-const HeroContainer = styled.div`
+const HeroContainer = styled.section`
+position: relative;
   padding-left:1em;
   padding-right: 1em;
   height: calc(100vh - 48px);
@@ -28,9 +29,9 @@ const HeroContainer = styled.div`
 
 const HeroTitle = styled.h2`
   text-align: center;
-  
+  line-height: 1.41;
   color: ${vars.white};
-  font-size: 1.2em;
+  font-size: 1.3em;
   font-family: ${vars.fontTitle};
 `;
 
