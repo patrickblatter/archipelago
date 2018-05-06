@@ -6,7 +6,7 @@ const vars = {
   black: '#434343',
 
   fontTitle: "'Questrial', sans-serif",
-  fontText: "'Old Standard TT', serif;"
-}
+  fontText: "'Old Standard TT', serif;",
+};
 
 export default vars;

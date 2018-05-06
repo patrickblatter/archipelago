@@ -9,7 +9,7 @@ class Hero extends Component {
         <HeroTitle>Aye Captain, welcome on board!</HeroTitle>
         <HeroText>Getting a boat has never been easier. Coast aloung the most beautiful islands of Sweden. We have the right boats waiting for you.</HeroText>
       </HeroContainer>
-    )
+    );
   }
 }
 export default Hero;
@@ -25,7 +25,7 @@ position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-`
+`;
 
 const HeroTitle = styled.h2`
   text-align: center;
@@ -41,4 +41,5 @@ line-height: 1.41;
   color: ${vars.white};
   text-align: center;
   font-family: ${vars.fontText};
-`
+`;
+

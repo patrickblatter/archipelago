@@ -7,69 +7,63 @@ import { toggleNav } from '../actions/navActions';
 import { Link } from 'react-router-dom';
 
 class Navigation extends Component {
-
- 
   render() {
     return (
-      <React.Fragment>
-      
+
+
       <Nav>
         <InnerNav>
           <Title>Archipelago</Title>
-          <Button  onClick={this.props.toggleNav}>
+          <Button onClick={this.props.toggleNav}>
             <Line />
             <Line />
             <Line />
           </Button>
         </InnerNav>
-        { this.props.nav.isOpen && 
-        <React.Fragment>
-        <SideNavOverlay onClick={this.props.toggleNav}/>
-        <SideNavContainer id="sideNav">
-          <ButtonClose onClick={this.props.toggleNav}> 
-            <React.Fragment>
-              &#10006;
-            </React.Fragment>
-          </ButtonClose>
-          <Menu>
-              <MenuItem>
-                <StyledLink to="/" onClick={this.props.toggleNav}>Home</StyledLink>
-              </MenuItem>
-              <MenuItem>
-                <StyledLink to="/boats" onClick={this.props.toggleNav}>View Boats</StyledLink>
-              </MenuItem>
-              <MenuItem>
-                <StyledLink to="/sell">Sell A Boat</StyledLink>
-              </MenuItem>
-              <MenuItem>
-                <StyledLink to="/login">Login</StyledLink>
-              </MenuItem>
-              <MenuItem>
-                <StyledLink to="/signup">Sign Up</StyledLink>
-              </MenuItem>
-              <MenuItem>
-                <StyledLink to="/">Dashboard</StyledLink>
-              </MenuItem>
-            </Menu>
-        </SideNavContainer>
-        </React.Fragment>
+        { this.props.nav.isOpen &&
+          <React.Fragment>
+            <SideNavOverlay onClick={this.props.toggleNav} />
+            <SideNavContainer>
+              <ButtonClose onClick={this.props.toggleNav}>
+                <React.Fragment>
+                  &#10006;
+                </React.Fragment>
+              </ButtonClose>
+              <Menu>
+                <MenuItem>
+                  <StyledLink to="/" onClick={this.props.toggleNav}>Home</StyledLink>
+                </MenuItem>
+                <MenuItem>
+                  <StyledLink to="/boats" onClick={this.props.toggleNav}>View Boats</StyledLink>
+                </MenuItem>
+                <MenuItem>
+                  <StyledLink to="/sell">Sell A Boat</StyledLink>
+                </MenuItem>
+                <MenuItem>
+                  <StyledLink to="/login">Login</StyledLink>
+                </MenuItem>
+                <MenuItem>
+                  <StyledLink to="/signup">Sign Up</StyledLink>
+                </MenuItem>
+                <MenuItem>
+                  <StyledLink to="/">Dashboard</StyledLink>
+                </MenuItem>
+              </Menu>
+            </SideNavContainer>
+          </React.Fragment>
       }
       </Nav>
-     
-      
-      
-      </React.Fragment>
-    )
+    );
   }
 }
 
 
 const mapStateToProps = state => ({
-    nav: state.nav
-})
+  nav: state.nav,
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  toggleNav
+  toggleNav,
 }, dispatch);
 
 
@@ -97,7 +91,7 @@ const Button = styled.button`
   cursor: pointer;
   padding: 0 8px;
   background: transparent;
-`
+`;
 
 const Line = styled.span`
   width: 24px;
@@ -105,7 +99,7 @@ const Line = styled.span`
   background: ${vars.blue};
   height: 2px;
   margin-bottom: 5px;
-` 
+`;
 
 const Title = styled.h1`
   font-family: ${vars.fontTitle};
@@ -113,7 +107,7 @@ const Title = styled.h1`
   color: ${vars.blue};
   margin:0;
   align-self: center;
-`
+`;
 const SideNavOverlay = styled.div`
   background-color: rgba(39,39,39,0.9);
   position: absolute;
@@ -136,7 +130,7 @@ const SideNavContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   background-color: rgba(39,39,39,1);
-`
+`;
 
 const ButtonClose = Button.extend`
   color: ${vars.grey};
@@ -146,16 +140,16 @@ const ButtonClose = Button.extend`
   &:hover {
     color: ${vars.white};
   }
-`
+`;
 
 const Menu = styled.ul`
   list-style: none;
   padding-left: 0.8em;
-`
+`;
 
 const MenuItem = styled.li`
   margin-bottom: 1.35em;
-`
+`;
 
 const StyledLink = styled(Link)`
   color: ${vars.white};
@@ -168,5 +162,5 @@ const StyledLink = styled(Link)`
   &:hover {
     color: ${vars.orange};
   }
-`
+`;
 
