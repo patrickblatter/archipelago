@@ -7,12 +7,3 @@ export function toggleNav() {
     type: "TOGGLE_NAV"
   }
 }
-
-// export function closeNav() {
-//   return {
-//     type: "CLOSE_NAV",
-//     data: {
-//       isOpen: false
-//     }
-//   }
-// }

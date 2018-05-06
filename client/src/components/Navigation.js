@@ -4,8 +4,11 @@ import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
 import vars from '../vars';
 import { toggleNav } from '../actions/navActions';
+import { Link } from 'react-router-dom';
 
 class Navigation extends Component {
+
+ 
   render() {
     return (
       <React.Fragment>
@@ -21,7 +24,7 @@ class Navigation extends Component {
         </InnerNav>
         { this.props.nav.isOpen && 
         <React.Fragment>
-        <SideNavOverlay />
+        <SideNavOverlay onClick={this.props.toggleNav}/>
         <SideNavContainer id="sideNav">
           <ButtonClose onClick={this.props.toggleNav}> 
             <React.Fragment>
@@ -30,22 +33,22 @@ class Navigation extends Component {
           </ButtonClose>
           <Menu>
               <MenuItem>
-                <A href="#">Home</A>
+                <StyledLink to="/" onClick={this.props.toggleNav}>Home</StyledLink>
               </MenuItem>
               <MenuItem>
-                <A href="#">View Boats</A>
+                <StyledLink to="/boats" onClick={this.props.toggleNav}>View Boats</StyledLink>
               </MenuItem>
               <MenuItem>
-                <A href="#">Sell A Boat</A>
+                <StyledLink to="/sell">Sell A Boat</StyledLink>
               </MenuItem>
               <MenuItem>
-                <A href="#">Login</A>
+                <StyledLink to="/login">Login</StyledLink>
               </MenuItem>
               <MenuItem>
-                <A href="#">Sign Up</A>
+                <StyledLink to="/signup">Sign Up</StyledLink>
               </MenuItem>
               <MenuItem>
-                <A href="#">Dashboard</A>
+                <StyledLink to="/">Dashboard</StyledLink>
               </MenuItem>
             </Menu>
         </SideNavContainer>
@@ -111,16 +114,8 @@ const Title = styled.h1`
   margin:0;
   align-self: center;
 `
-const Seperator = styled.hr`
-  margin: 0;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid rgba(199,199,199,0.2);
-`
-
-
 const SideNavOverlay = styled.div`
-  background-color: rgba(69,69,69,0.9);
+  background-color: rgba(39,39,39,0.9);
   position: absolute;
   z-index: 800;
   top: 0;
@@ -140,7 +135,7 @@ const SideNavContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: rgba(69,69,69,1);
+  background-color: rgba(39,39,39,1);
 `
 
 const ButtonClose = Button.extend`
@@ -162,7 +157,7 @@ const MenuItem = styled.li`
   margin-bottom: 1.35em;
 `
 
-const A = styled.a`
+const StyledLink = styled(Link)`
   color: ${vars.white};
   text-decoration: none;
   font-size: 0.9em;

@@ -1,19 +1,16 @@
-import {
-  TOGGLE_NAV
-} from '../actions/navActions';
+import { TOGGLE_NAV } from '../actions/navActions';
 
 const initialState = {
-  isOpen: false
-}
+  isOpen: false,
+};
 
 export function navReducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case TOGGLE_NAV:
       return {
         ...state,
-        isOpen: !state.isOpen
-      }
-      break;
+        isOpen: !state.isOpen,
+      };
 
     default:
       return state;

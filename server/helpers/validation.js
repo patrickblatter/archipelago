@@ -33,7 +33,7 @@ module.exports = {
     addBoatSchema: Joi.object().keys({
       title: Joi.string().required(),
       description: Joi.string().required(),
-      pricePerDay: Joi.number().greater(0).required(),
+      pricePerDay: Joi.number().greater(0).required()
     }),
 
     deleteBoatSchema: {

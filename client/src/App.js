@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Navigation from './components/Navigation';
-import Hero from './components/Hero';
+import Home from './pages/home';
 import { connect } from 'react-redux';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 class App extends Component {
   render() {
@@ -11,10 +12,14 @@ class App extends Component {
       document.body.style.overflowY = 'auto'
     }
     return (
-      <React.Fragment>
-        <Navigation />
-        <Hero />
-      </React.Fragment>
+        <Router>
+          <React.Fragment>
+          <Navigation />
+          <Switch>
+            <Route exact path="/" component={Home} />
+          </Switch>
+          </React.Fragment>
+        </Router>
     );
   }
 }
