@@ -4,9 +4,10 @@ module.exports = {
 
   validateBody: (schema) => {
     return (req, res, next) => {
-      
+        
       const result = Joi.validate(req.body, schema);
       if(result.error) {
+        console.log(result.error)
         return res.sendStatus(400);
       }
      
@@ -33,7 +34,8 @@ module.exports = {
     addBoatSchema: Joi.object().keys({
       title: Joi.string().required(),
       description: Joi.string().required(),
-      pricePerDay: Joi.number().greater(0).required()
+      pricePerDay: Joi.number().greater(0).required(),
+      images: Joi.array().items(Joi.string()).optional()
     }),
 
     deleteBoatSchema: {

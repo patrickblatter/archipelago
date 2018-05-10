@@ -4,6 +4,7 @@ const boatController = require('../controllers/boats')
 const passport = require('passport');
 const passportConfig = require('../passport');
 const { validateBody, validateParams, schemas } = require('../helpers/validation');
+const filesController = require('../controllers/files');
 
 const authenticate = (schema) => passport.authenticate(`${schema}`, { session: false });
 
@@ -15,8 +16,9 @@ router.route('/')
   // Add Boat
   .post(
     authenticate('jwt'),
-    validateBody(schemas.addBoatSchema),
-    boatController.addBoat
+    // validateBody(schemas.addBoatSchema),
+    boatController.addBoat,
+    filesController.uploadImages
 );
 
 // Update Boat

@@ -38,8 +38,6 @@ class Post extends Component {
         </PostWrapper>
 
       </React.Fragment>
-
-
     );
   }
 }
@@ -50,7 +48,6 @@ const PostWrapper = styled.div`
   margin: 0 auto;
   width: 90%;
   margin-bottom: 1em;
-  
 `;
 
 const PostHeader = styled.div`
@@ -64,7 +61,7 @@ const PostHeader = styled.div`
 `;
 
 const Overlay = styled.div`
-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -90,29 +87,29 @@ const PostBody = styled.div`
   font-family: ${vars.fontText};
   display: flex;
   flex-direction: column;
-  color: ${vars.black};
+  color: black;
   text-decoration: none;
   border-left: 1px solid ${vars.grey};
   border-bottom: 1px solid ${vars.grey};
   border-right: 1px solid ${vars.grey};
   border-radius: 0 0 3px 3px;
-  /* padding-bottom: 0.5em; */
   padding: 0 0.5em 0.5em;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 
-  /* // p {
-  //   margin: 0;
   
 
-  //   &:last-of-type {
-  //     align-self: flex-end;
-  //     margin-top: 0.5em;
-  //     margin-right: 0.5em;
-  //     color: ${vars.orange};
-  //   }
-  
-  // } */
+  p:last-of-type{
+    align-self: flex-end;
+    color: ${vars.blue};
+    font-weight: 700;
+    font-family: ${vars.fontTitle};
+    margin: 0;
+  }
 `;
 
 const PostDescription = styled.p`
-  margin-top: 0.5em;
+  margin-top: 0.9em;
+  margin-bottom: 0.6em;
+  font-size: 0.8em;
+  line-height: 1.3
 `;

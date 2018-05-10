@@ -15,10 +15,12 @@ module.exports = {
   },
 
   addBoat: async (req, res, next) => {
+    console.log(req.files);
     const { 
       title, 
       description,
       pricePerDay,
+      images
     } = req.body;
 
 
@@ -29,14 +31,26 @@ module.exports = {
       userId: req.user._id
     });
 
+    
+
     const result = await newBoat.save();
     if(result.err) {
       //failed
+      console.log(result);
       return res.sendStatus(400);
     }
     
+    
+    if(images.length < 1) {
+      // proceed to file upload
+      req.body.boat = result;
+      next();
+    }
+
     //success
-    res.status(201).json({ boat: newBoat });
+    res.status(201).json({ boat: result });
+
+    
   },
 
   getBoat: async (req, res, next) => {

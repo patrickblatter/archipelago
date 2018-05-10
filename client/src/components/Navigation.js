@@ -5,8 +5,18 @@ import styled from 'styled-components';
 import vars from '../vars';
 import { toggleNav } from '../actions/navActions';
 import { Link } from 'react-router-dom';
+import { logout } from '../actions/userActions';
+import { removeToken } from '../localStorage';
 
 class Navigation extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  logout() {
+    removeToken();
+  }
+
   render() {
     return (
 
@@ -37,13 +47,20 @@ class Navigation extends Component {
                   <StyledLink to="/boats" onClick={this.props.toggleNav}>View Boats</StyledLink>
                 </MenuItem>
                 <MenuItem>
-                  <StyledLink to="/sell">Sell A Boat</StyledLink>
+                  <StyledLink to="/rentout">Rent out your Boat</StyledLink>
                 </MenuItem>
+                { !this.props.user.isLoggedIn &&
                 <MenuItem>
-                  <StyledLink to="/login">Login</StyledLink>
+                  <StyledLink to="/login" onClick={this.props.toggleNav}>Login</StyledLink>
                 </MenuItem>
+                }
+                { this.props.user.isLoggedIn &&
                 <MenuItem>
-                  <StyledLink to="/signup">Sign Up</StyledLink>
+                  <StyledLink to="/login" onClick={this.logout && this.props.logout}>Logout</StyledLink>
+                </MenuItem>
+                }
+                <MenuItem>
+                  <StyledLink to="/signup" onClick={this.props.toggleNav}>Sign Up</StyledLink>
                 </MenuItem>
                 <MenuItem>
                   <StyledLink to="/">Dashboard</StyledLink>
@@ -60,10 +77,12 @@ class Navigation extends Component {
 
 const mapStateToProps = state => ({
   nav: state.nav,
+  user: state.user,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   toggleNav,
+  logout,
 }, dispatch);
 
 

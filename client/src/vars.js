@@ -1,6 +1,6 @@
 const vars = {
   white: '#ffffff',
-  grey: '#c7c7c7',
+  grey: '#F1F1EF',
   blue: '#77d2de',
   orange: '#fa8629',
   black: '#434343',

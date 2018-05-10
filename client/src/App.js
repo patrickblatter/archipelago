@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Home from './pages/home';
+import Login from './pages/login';
+import Signup from './pages/signup';
+import RentOut from './pages/rentout';
 
 class App extends Component {
   render() {
@@ -18,8 +21,10 @@ class App extends Component {
           <Navigation />
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/rentout" component={RentOut} />
           </Switch>
-          <Home />
         </React.Fragment>
       </Router>
     );

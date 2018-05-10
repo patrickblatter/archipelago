@@ -10,7 +10,8 @@ module.exports = {
       boatId,
       pricePerDay,
       rentalStartDate,
-      rentalEndDate
+      rentalEndDate,
+      images
     } = req.body;
 
     const newRental = new Rental({
