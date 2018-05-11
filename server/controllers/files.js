@@ -1,6 +1,8 @@
-const multer  = require('multer')
+// const multer  = require('multer')
 const AWS = require('aws-sdk');
+const uuidv4 = require('uuid/v4');
 const keys = require('../config/keys');
+const Boat = require('../models/boat');
 
 const s3 = new AWS.S3({
   credentials: {
@@ -10,28 +12,31 @@ const s3 = new AWS.S3({
 });
 
 const bucket = 'archipelago-files';
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
 
 
 // upload multiple files
 module.exports = {
 
   uploadImages: async(req, res, next) => {
+    console.log(req.files)
+    const { newBoat, user } = req;
 
-    upload.array('images[]', 8), async (req, res, next) => {
 
-      var params = {
-        Body: req.files.buffer, 
-        Bucket: bucket, 
-        Key: req.files.originalname
-       };
-       
+      req.files.forEach(image => {
+        filename = uuidv4();
+        newBoat.images.push(filename);
+
+        var params = {
+          Body: image.buffer, 
+          Bucket: bucket, 
+          Key: filename
+         };
+      
       s3.putObject(params)
         .on('build', req => {
           // set user metadata
-          req.httpRequest.headers['x-amz-meta-user'] = req.user._id;
-          req.httpRequest.headers['x-amz-meta-boatId'] = req.boat._id;
+          req.httpRequest.headers['x-amz-meta-user'] = user._id;
+          req.httpRequest.headers['x-amz-meta-boatId'] = newBoat._id;
         })
         .send((err, data) => {
           if (err) { console.log(err) } 
@@ -39,10 +44,18 @@ module.exports = {
             console.log('file uploaded');
           }
         })
-      }
+      });
 
+      const result = await newBoat.save();
+      if(result.err) {
+        console.log(result);
+        return res.sendStatus(400);
+      }
       
-    res.stats(200).json({status: 'images uploaded'});
+      res.status(200).json({
+        boat: 'Successfully added',
+        images: 'Sucessfully uploaded'
+      });
     }
 
   

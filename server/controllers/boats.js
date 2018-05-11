@@ -1,6 +1,7 @@
 const Boat = require('../models/boat');
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Types;
+const uuidv4 = require('uuid/v4');
 
 module.exports = {
 
@@ -15,14 +16,11 @@ module.exports = {
   },
 
   addBoat: async (req, res, next) => {
-    console.log(req.files);
     const { 
       title, 
       description,
-      pricePerDay,
-      images
+      pricePerDay
     } = req.body;
-
 
     const newBoat = new Boat({
       title,
@@ -30,8 +28,27 @@ module.exports = {
       pricePerDay,
       userId: req.user._id
     });
-
     
+
+    if (req.files.length) {
+      // const images = [];
+
+      // req.files.forEach(element => {
+      //   let filename = uuidv4();
+      //   images.push(filename);
+      // });
+
+      // newBoat.images = images;
+      // const result = await newBoat.save();
+      // if(result.err) {
+      //   //failed
+      //   console.log(result);
+      //   return res.sendStatus(400);
+      // }
+      req.newBoat = newBoat;
+      // proceed to file upload on S3
+      next();
+    }
 
     const result = await newBoat.save();
     if(result.err) {
@@ -40,17 +57,8 @@ module.exports = {
       return res.sendStatus(400);
     }
     
-    
-    if(images.length < 1) {
-      // proceed to file upload
-      req.body.boat = result;
-      next();
-    }
-
     //success
     res.status(201).json({ boat: result });
-
-    
   },
 
   getBoat: async (req, res, next) => {

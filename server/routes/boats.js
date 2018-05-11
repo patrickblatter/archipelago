@@ -1,11 +1,13 @@
 const router = require('express-promise-router')();
+const multer  = require('multer')
 const Boat = require('../models/boat');
 const boatController = require('../controllers/boats')
 const passport = require('passport');
 const passportConfig = require('../passport');
 const { validateBody, validateParams, schemas } = require('../helpers/validation');
 const filesController = require('../controllers/files');
-
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 const authenticate = (schema) => passport.authenticate(`${schema}`, { session: false });
 
 router.route('/')
@@ -16,7 +18,8 @@ router.route('/')
   // Add Boat
   .post(
     authenticate('jwt'),
-    // validateBody(schemas.addBoatSchema),
+    upload.array('images', 8),
+    validateBody(schemas.addBoatSchema),
     boatController.addBoat,
     filesController.uploadImages
 );

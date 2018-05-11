@@ -5,6 +5,7 @@ const passport = require('passport');
 const { MONGO_URI } = require('./config/keys');
 const app = express();
 
+
 // Connect to mongo
 mongoose.Promise = global.Promise;
 mongoose.connect(MONGO_URI);
