@@ -11,32 +11,16 @@ class Post extends Component {
           <Link to="/boat/_ID" style={{ textDecoration: 'none' }}>
             <PostHeader>
               <Overlay>
-                <PostTitle>Luxurious Yacht</PostTitle>
+                <PostTitle>{this.props.title}</PostTitle>
               </Overlay>
-              <img src="https://images.unsplash.com/photo-1470255033145-e4d1c1c47539?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=814a62c71e9ce7220a19ee3b1d49e1de&auto=format&fit=crop&w=1050&q=80" alt="" />
+              <img src={`https://s3.eu-central-1.amazonaws.com/archipelago-files/${this.props.images[0]}`} alt="" />
             </PostHeader>
             <PostBody>
-              <PostDescription>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</PostDescription>
-              <p>$1500/day</p>
+              <PostDescription>{this.props.description}</PostDescription>
+              <p>${this.props.pricePerDay}/day</p>
             </PostBody>
           </Link>
         </PostWrapper>
-
-        <PostWrapper>
-          <Link to="/boat/_ID" style={{ textDecoration: 'none' }}>
-            <PostHeader>
-              <Overlay>
-                <PostTitle>Luxurious Yacht</PostTitle>
-              </Overlay>
-              <img src="https://images.unsplash.com/photo-1470255033145-e4d1c1c47539?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=814a62c71e9ce7220a19ee3b1d49e1de&auto=format&fit=crop&w=1050&q=80" alt="" />
-            </PostHeader>
-            <PostBody>
-              <PostDescription>orem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</PostDescription>
-              <p>$1500/day</p>
-            </PostBody>
-          </Link>
-        </PostWrapper>
-
       </React.Fragment>
     );
   }

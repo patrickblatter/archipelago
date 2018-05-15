@@ -31,29 +31,15 @@ module.exports = {
     
 
     if (req.files.length) {
-      // const images = [];
-
-      // req.files.forEach(element => {
-      //   let filename = uuidv4();
-      //   images.push(filename);
-      // });
-
-      // newBoat.images = images;
-      // const result = await newBoat.save();
-      // if(result.err) {
-      //   //failed
-      //   console.log(result);
-      //   return res.sendStatus(400);
-      // }
       req.newBoat = newBoat;
+
       // proceed to file upload on S3
-      next();
+      return next();
     }
 
     const result = await newBoat.save();
     if(result.err) {
       //failed
-      console.log(result);
       return res.sendStatus(400);
     }
     
