@@ -7,6 +7,7 @@ import Home from './pages/home';
 import Login from './pages/login';
 import Signup from './pages/signup';
 import RentOut from './pages/rentout';
+import BoatDetail from './pages/detail';
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/rentout" component={RentOut} />
+            <Route exact path="/boat/:id" component={BoatDetail} />
           </Switch>
         </React.Fragment>
       </Router>

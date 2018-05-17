@@ -11,11 +11,11 @@ import { getAll } from '../actions/boatActions';
 
 class Home extends Component {
   async componentDidMount() {
-    this.props.getAll();
+    await this.props.getAll();
   }
 
   render() {
-    if (!this.props.isLoaded) return <BouncingLoader />;
+    if (!this.props.boatsLoaded) return <BouncingLoader />;
     return (
       <React.Fragment>
         <Hero />
@@ -34,7 +34,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 
 const mapStateToProps = state => ({
   boats: state.boat.boats,
-  isLoaded: state.boat.isLoaded,
+  boatsLoaded: state.boat.boatsLoaded,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -1,10 +1,17 @@
-import { GET_ALL } from '../actions/boatActions';
+import {
+  GET_ALL,
+  GET_ALL_ERROR,
+  GET_ONE,
+  GET_ONE_ERROR,
+  CLEAR_ONE,
+} from '../actions/boatActions';
 
 const initialState = {
   boats: [],
   boat: {},
-  isLoaded: false,
-  boatsLoadedAt: null,
+  boatLoaded: false,
+  boatsLoaded: false,
+  // boatsLoadedAt: null,
 };
 
 
@@ -14,8 +21,22 @@ export function boatReducer(state = initialState, action) {
       return {
         ...state,
         boats: action.data,
-        isLoaded: true,
-        boatsLoadedAt: new Date(),
+        boatsLoaded: true,
+        // boatsLoadedAt: new Date(),
+      };
+
+    case GET_ONE:
+      return {
+        ...state,
+        boatLoaded: true,
+        boat: action.data,
+      };
+
+    case CLEAR_ONE:
+      return {
+        ...state,
+        boat: {},
+        boatLoaded: false,
       };
 
     default:

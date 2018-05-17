@@ -6,5 +6,5 @@ export const Section = styled.section`
   padding-left: 1em;
   padding-right: 1em;
   background: ${props => (props.grey ? '#F1F1EF' : 'white')};
-  height: ${props => (props.fullHeight ? 'calc(100vh - 48px)' : '100%')};
+  height: ${props => (props.fullHeight ? 'calc(100vh - 80px)' : '100%')};
 `;

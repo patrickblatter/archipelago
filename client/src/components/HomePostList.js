@@ -12,6 +12,7 @@ class HomePostList extends Component {
       boats.map(boat =>
         (<Post
           key={boat._id}
+          id={boat._id}
           title={boat.title}
           description={boat.description}
           pricePerDay={boat.pricePerDay}

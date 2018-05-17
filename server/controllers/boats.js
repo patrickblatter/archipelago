@@ -7,9 +7,10 @@ module.exports = {
 
   getAll: async (req, res, next) => {
     const boats = await Boat.find({});
+    console.log(boats)
     
     if (boats.length > 0) {
-      res.status(200).json({ boats });
+      res.status(200).json({ boats: boats });
     } else {
       res.status(200).json({ boats: 'No Boats found'});
     }

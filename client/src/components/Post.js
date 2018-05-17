@@ -5,19 +5,23 @@ import vars from '../vars';
 
 class Post extends Component {
   render() {
+    const {
+      id, title, description, pricePerDay, images,
+    } = this.props;
     return (
+
       <React.Fragment>
         <PostWrapper>
-          <Link to="/boat/_ID" style={{ textDecoration: 'none' }}>
+          <Link to={`/boat/${id}`} style={{ textDecoration: 'none' }}>
             <PostHeader>
               <Overlay>
-                <PostTitle>{this.props.title}</PostTitle>
+                <PostTitle>{title}</PostTitle>
               </Overlay>
-              <img src={`https://s3.eu-central-1.amazonaws.com/archipelago-files/${this.props.images[0]}`} alt="" />
+              <img src={`${images[0]}`} alt="" />
             </PostHeader>
             <PostBody>
-              <PostDescription>{this.props.description}</PostDescription>
-              <p>${this.props.pricePerDay}/day</p>
+              <PostDescription>{description}</PostDescription>
+              <p>${pricePerDay}/day</p>
             </PostBody>
           </Link>
         </PostWrapper>

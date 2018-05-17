@@ -96,7 +96,7 @@ module.exports = {
     // console.log(newBoat)
     
     
-    
+    const base = 'https://s3.eu-central-1.amazonaws.com/archipelago-files/'
     validFiles.forEach(image => {
       var params = {
         Body: image.buffer, 
@@ -112,8 +112,9 @@ module.exports = {
         })
         .send((err, data) => {
           if (err) { console.log(err) }
+          console.log(data)
         })
-      newBoat.images.push(image.filename)
+      newBoat.images.push(base + image.filename)
     })
     
     
