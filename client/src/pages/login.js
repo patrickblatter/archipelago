@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { login } from '../actions/userActions';
 import { Redirect } from 'react-router-dom';
+import { getToken } from '../localStorage';
 
 import FormIntro from '../components/UI/Forms/FormIntro';
 import FormGroup from '../components/UI/Forms/FormGroup';
@@ -38,28 +39,13 @@ class Login extends Component {
 
   async onSubmit(event) {
     event.preventDefault();
-    try {
-      if (this.validateForm()) {
-        const response = await axios.post(
-          'http://localhost:3001/users/login',
-          {
-            email: this.state.email,
-            password: this.state.password,
-          },
-        );
-
-        if (response.status === 200) {
-          localStorage.setItem('token', response.data.token);
-          this.props.login();
-          this.setState({
-            redirect: true,
-          });
-        }
-      } else {
-
+    if (this.validateForm()) {
+      await this.props.login(this.state.email, this.state.password);
+      if (this.props.user.isLoggedIn) {
+        this.setState({
+          redirect: true,
+        });
       }
-    } catch (error) {
-      console.log(error);
     }
   }
 

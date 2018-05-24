@@ -19,8 +19,6 @@ class Navigation extends Component {
 
   render() {
     return (
-
-
       <Nav>
         <InnerNav>
           <Title>Archipelago</Title>
@@ -47,7 +45,7 @@ class Navigation extends Component {
                   <StyledLink to="/boats" onClick={this.props.toggleNav}>View Boats</StyledLink>
                 </MenuItem>
                 <MenuItem>
-                  <StyledLink to="/rentout">Rent out your Boat</StyledLink>
+                  <StyledLink to="/rentout" onClick={this.props.toggleNav}>Rent out your Boat</StyledLink>
                 </MenuItem>
                 { !this.props.user.isLoggedIn &&
                 <MenuItem>

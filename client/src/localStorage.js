@@ -35,3 +35,21 @@ export const saveToken = (token) => {
     console.log(error);
   }
 };
+
+export const getToken = () => {
+  try {
+    const { token } = loadState().user;
+    return token;
+  } catch (error) {
+    return undefined;
+  }
+};
+
+export const getId = () => {
+  try {
+    const { _id } = loadState().user;
+    return _id;
+  } catch (error) {
+    return undefined;
+  }
+};

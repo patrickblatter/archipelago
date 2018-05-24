@@ -18,7 +18,7 @@ router.route('/')
   // Add Boat
   .post(
     authenticate('jwt'),
-    upload.array('images', 8),
+    upload.array('files[]', 8),
     validateBody(schemas.addBoatSchema),
     boatController.addBoat,
     filesController.uploadImages

@@ -7,11 +7,11 @@ const bucket = 'archipelago-files';
 const cloudinary = require('cloudinary');
 const parallel =  require('async/parallel');
 
-cloudinary.config({ 
-  cloud_name: 'dwwlgy1ov', 
-  api_key: '127259176468435', 
-  api_secret: 'Y7g4byfvptC5TywOXSdKrzha3DE' 
-});
+// cloudinary.config({ 
+//   cloud_name: 'dwwlgy1ov', 
+//   api_key: '127259176468435', 
+//   api_secret: 'Y7g4byfvptC5TywOXSdKrzha3DE' 
+// });
 const s3 = new AWS.S3({
   credentials: {
     accessKeyId: keys.IAM_ACCESS_KEY,
@@ -72,7 +72,7 @@ module.exports = {
 
   uploadImages: async (req, res, next) => {
     const { newBoat, user } = req;
-    const validFiles = validateFiles(req.files);
+    const validFiles = validateFiles((req.files));
 
     if(validFiles.length < 1) {
       return res.status(415).json({ Error: 'Invalid File Type'});
@@ -112,7 +112,6 @@ module.exports = {
         })
         .send((err, data) => {
           if (err) { console.log(err) }
-          console.log(data)
         })
       newBoat.images.push(base + image.filename)
     })

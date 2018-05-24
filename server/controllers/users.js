@@ -43,8 +43,8 @@ module.exports = {
     const { _id, role } = req.user;
     const payload = ({ _id, role });
     const token = signToken(payload);
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.status(200).json({ token });
+    // res.setHeader('Access-Control-Allow-Origin', '*');
+    res.status(200).json({ token, _id });
   },
 
   protected: (req, res, next) => {
