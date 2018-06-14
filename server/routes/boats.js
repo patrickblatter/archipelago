@@ -24,6 +24,11 @@ router.route('/')
     filesController.uploadImages
 );
 
+router.route('/limit')
+  .get(
+    boatController.limitGet
+  )
+
 // Update Boat
 
 // Routes for Boat with id

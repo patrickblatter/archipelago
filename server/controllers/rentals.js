@@ -24,7 +24,6 @@ module.exports = {
 
     const result = await newRental.save();
     if(result.err) {
-      console.log(result);
       //failed
       return res.sendStatus(400);
     }

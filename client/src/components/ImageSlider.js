@@ -55,6 +55,10 @@ const GalleryContainer = styled.div`
     width: inherit;
     height: inherit;
   }
+
+  @media only screen and (min-width: 768px) {
+   height: 500px;
+  }
 `;
 
 const Arrows = styled.div`

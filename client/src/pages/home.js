@@ -6,12 +6,14 @@ import { Section } from '../components/UI/section';
 import { connect } from 'react-redux';
 import HomePostList from '../components/HomePostList';
 import BouncingLoader from '../components/UI/loader';
-import { getAll } from '../actions/boatActions';
+import { getAll, getLimit } from '../actions/boatActions';
 
 
 class Home extends Component {
-  async componentDidMount() {
-    await this.props.getAll();
+  async componentWillMount() {
+    if (!this.props.boatsLoaded) {
+      await this.props.getLimit(1);
+    }
   }
 
   render() {
@@ -30,6 +32,7 @@ class Home extends Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   getAll,
+  getLimit,
 }, dispatch);
 
 const mapStateToProps = state => ({

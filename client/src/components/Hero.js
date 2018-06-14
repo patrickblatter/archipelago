@@ -25,6 +25,18 @@ position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media only screen and (min-width: 1024px){
+    h2 {
+      font-size: 2.5em
+    }
+
+    p {
+      font-size: 2em;
+    }
+
+  }
+
 `;
 
 const HeroTitle = styled.h2`
@@ -33,6 +45,13 @@ const HeroTitle = styled.h2`
   color: ${vars.white};
   font-size: 1.3em;
   font-family: ${vars.fontTitle};
+  @media only screen and (min-width: 425px){
+    font-size: 1.6em
+  }
+
+  @media only screen and (min-width: 768px){
+    font-size: 1.7em;
+  }
 `;
 
 const HeroText = styled.p`
@@ -41,5 +60,13 @@ line-height: 1.41;
   color: ${vars.white};
   text-align: center;
   font-family: ${vars.fontText};
+  @media only screen and (min-width: 425px){
+    font-size: 1.3em;
+  }
+
+  @media only screen and (min-width: 768px){
+    font-size: 1.5em;
+    padding: 0 2em;
+  }
 `;
 

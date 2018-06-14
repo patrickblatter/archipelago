@@ -12,7 +12,7 @@ import { Button } from '../components/UI/button';
 import { getToken } from '../localStorage';
 import FormGroup from '../components/UI/Forms/FormGroup';
 import FormIntro from '../components/UI/Forms/FormIntro';
-import { FormErrorBox } from '../components/UI/infoBox';
+import { Box, FormErrorBox } from '../components/UI/infoBox';
 
 class BoatDetail extends Component {
   constructor(props) {
@@ -24,6 +24,8 @@ class BoatDetail extends Component {
       totalDays: undefined,
       total: undefined,
       formErrors: [],
+      createRentalSuccess: undefined,
+      createRentalFailure: undefined,
     };
     this.calculateDays = this.calculateDays.bind(this);
     this.onChangeStartDate = this.onChangeStartDate.bind(this);
@@ -68,18 +70,16 @@ class BoatDetail extends Component {
     });
   }
 
-  async onChangeStartDate(event) {
+  onChangeStartDate(event) {
     const input = event.target.value;
-    const startDate = await new Date(input);
-    this.setState({ startDate });
-    this.calculateDays();
+    const startDate = new Date(input);
+    this.setState({ startDate }, this.calculateDays());
   }
 
-  async onChangeEndDate(event) {
+  onChangeEndDate(event) {
     const input = event.target.value;
-    const endDate = await new Date(input);
-    this.setState({ endDate });
-    this.calculateDays();
+    const endDate = new Date(input);
+    this.setState({ endDate }, this.calculateDays());
   }
 
   calculateDays() {
@@ -127,11 +127,11 @@ class BoatDetail extends Component {
     return errors;
   }
 
-  createRental(event) {
+  async createRental(event) {
     event.preventDefault();
     const errors = this.validateForm();
     if (!errors.length) {
-      this.props.createRental(
+      await this.props.createRental(
         this.props.user._id,
         this.props.boat._id,
         this.props.boat.pricePerDay,
@@ -141,20 +141,65 @@ class BoatDetail extends Component {
       );
     }
     this.setState({ formErrors: errors });
+    if (this.props.rental.success !== undefined) {
+      this.setState({
+        createRentalSuccess: this.props.rental.success,
+        createRentalFailure: undefined,
+      });
+    }
+
+    if (this.props.rental.failure !== undefined) {
+      this.setState({
+        createRentalSuccess: undefined,
+        createRentalFailure: this.props.rental.failure,
+      });
+    }
+    this.closeModal();
+    this.startTimer();
+  }
+
+  startTimer() {
+    setTimeout(() => {
+      this.setState({
+        createRentalFailure: undefined,
+        createRentalSuccess: undefined,
+      });
+    }, 5000);
   }
 
 
   render() {
+    const boxStyle = {
+      margin: '1em',
+    };
+
     if (!this.props.boatLoaded) return <BouncingLoader />;
     return (
       <React.Fragment>
+
+        { this.state.createRentalFailure !== undefined &&
+          <FormErrorBox style={boxStyle}>
+            <p>
+              {this.state.createRentalFailure}
+            </p>
+          </FormErrorBox>
+        }
+
+        { this.state.createRentalSuccess !== undefined &&
+          <Box success style={boxStyle}>
+            <p>
+              {this.state.createRentalSuccess}
+            </p>
+          </Box>
+        }
+
+
         <ImageSlider images={this.props.boat.images} />
         <Section >
           <Wrapper>
             <Title>{this.props.boat.title}</Title>
             <Description>{this.props.boat.description}</Description>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam era
-            </p>
+
           </Wrapper>
 
 
@@ -226,6 +271,7 @@ const mapStateToProps = state => ({
   boat: state.boat.boat,
   boatLoaded: state.boat.boatLoaded,
   user: state.user,
+  rental: state.rental,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -248,12 +294,20 @@ const Title = styled.h3`
   color: ${vars.black};
   margin: 0;
   font-size: 1em;
+
+  @media only screen and (min-width: 768px) {
+   font-size: 1.3em;
+  }
 `;
 
 const Description = styled.p`
   color: ${vars.black};
   font-size: 0.87em;
   line-height: 1.41;
+  
+  @media only screen and (min-width: 768px) {
+   font-size: 1em;
+  }
 `;
 
 const CTA = styled.div`
@@ -331,3 +385,4 @@ const ButtonClose = Button.extend`
     color: ${vars.white};
   }
 `;
+

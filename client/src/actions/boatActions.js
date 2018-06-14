@@ -5,6 +5,12 @@ export const GET_ALL_ERROR = 'GET_ALL_ERROR';
 export const GET_ONE = 'GET_ONE';
 export const GET_ONE_ERROR = 'GET_ONE_ERROR';
 export const CLEAR_ONE = 'CLEAR_ONE';
+export const GET_LIMIT = 'GET_LIMIT';
+export const GET_LIMIT_ERROR = 'GET_LIMIT_ERROR';
+
+// get-boats-request
+// get-boats-success
+// get-boats-fail
 
 export function getAll() {
   return async (dispatch) => {
@@ -24,6 +30,23 @@ export function getAll() {
   };
 }
 
+export function getLimit(page) {
+  return async (dispatch) => {
+    try {
+      const result = await axios.get(`http://localhost:3001/boats/limit?page=${page}`);
+      dispatch({
+        type: 'GET_LIMIT',
+        data: result.data.boats,
+      });
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: 'GET_LIMIT_ERROR',
+        data: 'Couldn\'t get boats',
+      });
+    }
+  };
+}
 export function getOne(_id) {
   return async (dispatch) => {
     try {

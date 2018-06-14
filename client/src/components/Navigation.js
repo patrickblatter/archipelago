@@ -98,6 +98,19 @@ const InnerNav = styled.div`
   padding-left: 8px;
   padding-right: 8px;
   justify-content: space-between;
+  @media only screen and (min-width: 1024px){
+    padding: 0;
+    margin: 0 3em;
+    height: 60px;
+    
+    button {
+      height: 60px;
+    }
+    h1 {
+      font-size: 1.6em;
+    }
+  }
+
   
 `;
 
@@ -108,6 +121,12 @@ const Button = styled.button`
   cursor: pointer;
   padding: 0 8px;
   background: transparent;
+
+  @media only screen and (min-width: 1024px) {
+    height: 58px;
+    width: 50px;
+    font-size: 30px;
+  }
 `;
 
 const Line = styled.span`
@@ -124,6 +143,13 @@ const Title = styled.h1`
   color: ${vars.blue};
   margin:0;
   align-self: center;
+  @media only screen and (min-width: 425px){
+    font-size: 1.2em
+  }
+
+  @media only screen and (min-width: 725px){
+    font-size: 1.4em
+  }
 `;
 const SideNavOverlay = styled.div`
   background-color: rgba(39,39,39,0.9);
@@ -147,6 +173,30 @@ const SideNavContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   background-color: rgba(39,39,39,1);
+
+  @media only screen and (min-width: 1024px) {
+    width: 250px;
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    li {
+      margin-bottom: 2em;
+
+      a {
+        font-size: 1.3em;
+      }
+    }
+
+    li:first-of-type {
+      margin-top: 2em;
+    }
+
+
+
+  }
 `;
 
 const ButtonClose = Button.extend`

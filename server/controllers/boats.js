@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Types;
 const uuidv4 = require('uuid/v4');
 
+const resultsPerPage = 8;
+
 module.exports = {
 
   getAll: async (req, res, next) => {
@@ -15,7 +17,27 @@ module.exports = {
     }
   },
 
+  limitGet: async (req, res, next) => {
+    const page = req.query.page;
+    const boatsToSkip =  (page * resultsPerPage) - resultsPerPage;
+
+
+   Boat.find({}).skip(boatsToSkip)
+      .limit(resultsPerPage)
+      .exec((err, result) => {
+        if (err) {
+          return res.status(400).json({ message: 'Error'});
+        } 
+          if(result.length < 1) {
+            return res.status(200).json({ boats: 'No Boats found'});
+          }
+          res.status(200).json({ boats: result });
+        
+      });
+  },
+
   addBoat: async (req, res, next) => {
+    console.log('inside add boat')
     const { 
       title, 
       description,
@@ -28,6 +50,8 @@ module.exports = {
       pricePerDay,
       userId: req.user._id
     });
+
+    console.log(newBoat)
     
 
     if (req.files.length) {

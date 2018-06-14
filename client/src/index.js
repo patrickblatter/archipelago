@@ -17,6 +17,7 @@ const store = createStore(rootReducer, middleware);
 store.subscribe(throttle(() => {
   saveState({
     user: store.getState().user,
+    boat: store.getState().boat,
   });
 }, 1000));
 

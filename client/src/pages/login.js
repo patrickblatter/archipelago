@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Section } from '../components/UI/section';
-import vars from '../vars';
 import { Button } from '../components/UI/button';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { login } from '../actions/userActions';
 import { Redirect } from 'react-router-dom';
-import { getToken } from '../localStorage';
 
 import FormIntro from '../components/UI/Forms/FormIntro';
 import FormGroup from '../components/UI/Forms/FormGroup';
@@ -65,8 +62,6 @@ class Login extends Component {
       });
       return false;
     }
-
-
     return true;
   }
 

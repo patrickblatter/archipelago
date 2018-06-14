@@ -101,6 +101,7 @@ class RentOut extends Component {
               statusSuccess: 'Your post was submitted successfully',
               statusError: undefined,
             });
+            document.getElementById('rentOutForm').reset();
           })
           .catch((error) => {
             this.setState({
@@ -155,7 +156,7 @@ class RentOut extends Component {
         <FormIntro>
           To get your boat listed on our website, please fill out the form below
         </FormIntro>
-        <RentOutForm encType="multipart/form-data">
+        <RentOutForm encType="multipart/form-data" id="rentOutForm">
 
           <FormGroup>
             <label htmlFor="">Title:*</label>
