@@ -36,6 +36,6 @@ if(process.env.NODE_ENV === 'production') {
   
 }
 app.get("*", (req, res) => {
-  res.sendfile(path.resolve(__dirname, "../client/build/index.html"));
+  res.sendfile(path.resolve(__dirname, "../client/build/"));
 });
 module.exports = app;
