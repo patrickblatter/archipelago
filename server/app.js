@@ -41,7 +41,7 @@ app.use('/rentals', require('./routes/rentals'));
   
 // }
 // app.use(express.static("../client/build/"));
-// app.get("*", (req, res) => {
-//   res.sendfile(path.resolve(__dirname, "../client/build/index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendfile(path.resolve(__dirname, "../client/build/index.html"));
+});
 module.exports = app;
