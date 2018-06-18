@@ -31,6 +31,6 @@ app.use('/boats', require('./routes/boats'));
 app.use('/rentals', require('./routes/rentals'));
 
 if(process.env.NODE_ENV === 'production') {
-  app.use(express.static(__dirname, "../client/dist"))
+  app.use(express.static(__dirname, "../client/dist/main.js"))
 }
 module.exports = app;

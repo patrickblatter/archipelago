@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
-    
-    "start": "node index.js"
+    "start": "concurrently \"node index.js\" \"cd client && npm run start\""
   },
   "repository": {
     "type": "git",
