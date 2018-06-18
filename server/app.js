@@ -30,5 +30,7 @@ app.use('/users', require('./routes/users'));
 app.use('/boats', require('./routes/boats'));
 app.use('/rentals', require('./routes/rentals'));
 
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/public/index.html'));
+});
 module.exports = app;
