@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const { MONGO_URI } = require('./config/keys');
 const app = express();
+const path = require('path');
 
 
 // Connect to mongo
