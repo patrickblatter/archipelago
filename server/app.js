@@ -32,7 +32,8 @@ app.use('/boats', require('./routes/boats'));
 app.use('/rentals', require('./routes/rentals'));
 
 if(process.env.NODE_ENV === 'production') {
-  app.use(express.static("../client/build/static/js"));
+  console.log('prod env')
+  app.use(express.static("../client/build/"));
   
 }
 app.get("*", (req, res) => {
