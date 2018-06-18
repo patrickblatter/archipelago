@@ -31,11 +31,12 @@ app.use('/users', require('./routes/users'));
 app.use('/boats', require('./routes/boats'));
 app.use('/rentals', require('./routes/rentals'));
 
-if(process.env.NODE_ENV === 'production') {
-  console.log('prod env')
-  app.use(express.static("../client/build/"));
+// if(process.env.NODE_ENV === 'production') {
+//   console.log('prod env')
+//   app.use(express.static("../client/build/"));
   
-}
+// }
+app.use(express.static("../client/build/"));
 app.get("*", (req, res) => {
   res.sendfile(path.resolve(__dirname, "../client/build/index.html"));
 });
