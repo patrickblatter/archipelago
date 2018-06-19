@@ -15,7 +15,7 @@ export const GET_LIMIT_ERROR = 'GET_LIMIT_ERROR';
 export function getAll() {
   return async (dispatch) => {
     try {
-      const result = await axios.get('http://localhost:3001/boats');
+      const result = await axios.get('/boats');
       dispatch({
         type: 'GET_ALL',
         data: result.data.boats,
@@ -33,7 +33,7 @@ export function getAll() {
 export function getLimit(page) {
   return async (dispatch) => {
     try {
-      const result = await axios.get(`http://localhost:3001/boats/limit?page=${page}`);
+      const result = await axios.get(`/boats/limit?page=${page}`);
       dispatch({
         type: 'GET_LIMIT',
         data: result.data.boats,
@@ -50,7 +50,7 @@ export function getLimit(page) {
 export function getOne(_id) {
   return async (dispatch) => {
     try {
-      const result = await axios.get(`http://localhost:3001/boats/${_id}`);
+      const result = await axios.get(`/boats/${_id}`);
       dispatch({
         type: 'GET_ONE',
         data: result.data.boat,

@@ -86,7 +86,7 @@ class RentOut extends Component {
 
       const token = getToken();
       if (this.props.isLoggedIn && token !== null) {
-        axios.post('http://localhost:3001/boats', data, {
+        axios.post('/boats', data, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'multipart/form-data',

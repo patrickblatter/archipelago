@@ -8,7 +8,7 @@ export function login(email, password) {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        'http://localhost:3001/users/login',
+        '/users/login',
         {
           email,
           password,

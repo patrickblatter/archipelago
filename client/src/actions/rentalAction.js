@@ -14,7 +14,7 @@ export function createRental(userId, boatId, pricePerDay, rentalStartDate, renta
         rentalEndDate,
       };
       const result = await axios.post(
-        'http://localhost:3001/rentals', data, {
+        '/rentals', data, {
           headers: {
             Authorization: `Bearer ${token}`,
 

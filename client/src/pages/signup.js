@@ -73,7 +73,7 @@ class Signup extends Component {
     try {
       if (this.validateForm()) {
         const response = await axios.post(
-          'http://localhost:3001/users/signup',
+          '/users/signup',
           {
             email: this.state.email,
             password: this.state.password,
