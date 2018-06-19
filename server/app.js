@@ -5,6 +5,7 @@ const passport = require('passport');
 const { MONGO_URI } = require('./config/keys');
 const app = express();
 const path = require('path');
+const cors = require('cors')
 
 
 // Connect to mongo
@@ -29,7 +30,7 @@ app.use(passport.initialize());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static('../client/build'));
 }
-
+app.use(cors());
 // Routes
 app.use('/users', require('./routes/users'));
 app.use('/boats', require('./routes/boats'));
