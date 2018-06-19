@@ -43,6 +43,6 @@ app.use('/rentals', require('./routes/rentals'));
 // }
 // app.use(express.static("../client/build/"));
 app.get("*", (req, res) => {
-  res.sendfile("../client/build/index.html");
+  res.sendFile("../client/build/index.html");
 });
 module.exports = app;
