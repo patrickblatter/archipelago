@@ -34,10 +34,10 @@ class Login extends Component {
     });
   }
 
-  async onSubmit(event) {
+  onSubmit(event) {
     event.preventDefault();
     if (this.validateForm()) {
-      await this.props.login(this.state.email, this.state.password);
+      this.props.login(this.state.email, this.state.password);
       if (this.props.user.isLoggedIn) {
         this.setState({
           redirect: true,
